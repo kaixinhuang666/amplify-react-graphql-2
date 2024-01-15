@@ -1,0 +1,14 @@
+{
+  "resourceName": "tutorial",
+  "policyUUID": "c0864fbd",
+  "bucketName": "tutorail-hkx",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
