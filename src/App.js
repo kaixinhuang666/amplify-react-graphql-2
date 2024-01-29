@@ -58,7 +58,7 @@ const App = ({ signOut }) => {
     const data = {
       name: form.get("name"),
       description: form.get("description"),
-      image: image.name,
+      // image: image.name,
     };
     // const data = {
     //   name: form.get("name"),

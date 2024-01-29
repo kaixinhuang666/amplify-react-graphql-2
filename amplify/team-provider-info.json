@@ -20,6 +20,12 @@
       },
       "storage": {
         "tutorial": {}
+      },
+      "function": {
+        "amplifyreactgraphql2ed5e4282": {
+          "deploymentBucketName": "amplify-amplify8ece056939164-staging-165911-deployment",
+          "s3Key": "amplify-builds/amplifyreactgraphql2ed5e4282-6f654445363059712b68-build.zip"
+        }
       }
     }
   }

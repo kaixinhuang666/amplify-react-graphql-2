@@ -1,6 +1,19 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getNoteByLambda = /* GraphQL */ `
+  query GetNoteByLambda($id: ID!) {
+    getNoteByLambda(id: $id) {
+      id
+      name
+      description
+      image
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const getNote = /* GraphQL */ `
   query GetNote($id: ID!) {
     getNote(id: $id) {
