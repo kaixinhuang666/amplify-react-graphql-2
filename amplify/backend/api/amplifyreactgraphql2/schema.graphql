@@ -1,8 +1,9 @@
-type Note @model @auth(rules: [ { allow: owner, ownerField: "author" } ] ){
+type Note @model @auth(rules: [ { allow: owner } ] ){
   id: ID!
   name: String!
   description: String
   image: String
+  
 }
 
 type Query {

@@ -10,6 +10,7 @@ export const getNoteByLambda = /* GraphQL */ `
       image
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
@@ -23,6 +24,7 @@ export const getNote = /* GraphQL */ `
       image
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
@@ -41,6 +43,7 @@ export const listNotes = /* GraphQL */ `
         image
         createdAt
         updatedAt
+        owner
         __typename
       }
       nextToken
