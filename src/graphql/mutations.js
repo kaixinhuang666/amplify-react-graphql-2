@@ -1,6 +1,34 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createNoteByLambda = /* GraphQL */ `
+  mutation CreateNoteByLambda($name: String!, $description: String) {
+    createNoteByLambda(name: $name, description: $description) {
+      id
+      name
+      description
+      image
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteNoteByLambda = /* GraphQL */ `
+  mutation DeleteNoteByLambda($id: ID!) {
+    deleteNoteByLambda(id: $id) {
+      id
+      name
+      description
+      image
+      owner
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const createNote = /* GraphQL */ `
   mutation CreateNote(
     $input: CreateNoteInput!
@@ -11,6 +39,7 @@ export const createNote = /* GraphQL */ `
       name
       description
       image
+      owner
       createdAt
       updatedAt
       __typename
@@ -27,6 +56,7 @@ export const updateNote = /* GraphQL */ `
       name
       description
       image
+      owner
       createdAt
       updatedAt
       __typename
@@ -43,6 +73,7 @@ export const deleteNote = /* GraphQL */ `
       name
       description
       image
+      owner
       createdAt
       updatedAt
       __typename

@@ -3,33 +3,26 @@
 /**
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
  */
-// exports.handler = async (event) => {
-//     console.log(`EVENT: ${JSON.stringify(event)}`);
-//     return {
-//         statusCode: 200,
-//     //  Uncomment below to enable CORS requests
-//     //  headers: {
-//     //      "Access-Control-Allow-Origin": "*",
-//     //      "Access-Control-Allow-Headers": "*"
-//     //  },
-//         body: JSON.stringify('Hello from Lambda!'),
-//     };
-// };
 const AWS = require('aws-sdk');
 const dynamoDB = new AWS.DynamoDB.DocumentClient();
+const uuid = require('uuid'); 
 
 exports.handler = async (event) => {
+    const note = JSON.parse(event.body);
+    note.id = uuid.v4(); 
+    
     const params = {
-        TableName: "NoteTable",
+        TableName: "Note-sjdbsnbeqzg3xidmoz2mbpnpwa",
+        Item: note,
     };
     
     try {
-        const data = await dynamoDB.scan(params).promise();
+        await dynamoDB.put(params).promise();
         return {
             statusCode: 200,
-            body: JSON.stringify(data.Items),
+            body: JSON.stringify(note),
             headers: {
-                "Access-Control-Allow-Origin": "*", 
+                "Access-Control-Allow-Origin": "*",
                 "Access-Control-Allow-Headers": "*"
             },
         };
@@ -44,4 +37,3 @@ exports.handler = async (event) => {
         };
     }
 };
-

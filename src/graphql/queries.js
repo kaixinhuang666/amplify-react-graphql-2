@@ -8,6 +8,7 @@ export const getNoteByLambda = /* GraphQL */ `
       name
       description
       image
+      owner
       createdAt
       updatedAt
       __typename
@@ -21,6 +22,7 @@ export const getNote = /* GraphQL */ `
       name
       description
       image
+      owner
       createdAt
       updatedAt
       __typename
@@ -39,6 +41,7 @@ export const listNotes = /* GraphQL */ `
         name
         description
         image
+        owner
         createdAt
         updatedAt
         __typename

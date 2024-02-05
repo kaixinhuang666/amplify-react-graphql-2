@@ -21,7 +21,8 @@ import {
 } from "./graphql/mutations";
 import { getUrl } from 'aws-amplify/storage';
 import { uploadData } from 'aws-amplify/storage';
-import { remove } from 'aws-amplify/storage';
+import { remove } from 'aws-amplify/storage'
+import { getCurrentUser } from 'aws-amplify/auth';
 // const { API } = require('aws-amplify');
 
 const API = generateClient();
@@ -55,9 +56,16 @@ const App = ({ signOut }) => {
     const form = new FormData(event.target);
     // const image = form.get("image");
     const image = event.target.elements.image.files[0];
+
+    const { username, userId, signInDetails } = await getCurrentUser();
+    console.log(`The username: ${username}`);
+    console.log(`The userId: ${userId}`);
+    console.log(`The signInDetails: ${signInDetails}`);
+
     const data = {
       name: form.get("name"),
       description: form.get("description"),
+      owner: userId,
       // image: image.name,
     };
     // const data = {

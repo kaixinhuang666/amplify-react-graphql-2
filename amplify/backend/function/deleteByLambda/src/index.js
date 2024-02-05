@@ -3,33 +3,26 @@
 /**
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
  */
-// exports.handler = async (event) => {
-//     console.log(`EVENT: ${JSON.stringify(event)}`);
-//     return {
-//         statusCode: 200,
-//     //  Uncomment below to enable CORS requests
-//     //  headers: {
-//     //      "Access-Control-Allow-Origin": "*",
-//     //      "Access-Control-Allow-Headers": "*"
-//     //  },
-//         body: JSON.stringify('Hello from Lambda!'),
-//     };
-// };
 const AWS = require('aws-sdk');
 const dynamoDB = new AWS.DynamoDB.DocumentClient();
 
 exports.handler = async (event) => {
+    const { id } = JSON.parse(event.body);
+    
     const params = {
-        TableName: "NoteTable",
+        TableName: "Note-sjdbsnbeqzg3xidmoz2mbpnpwa",
+        Key: {
+            id,
+        },
     };
     
     try {
-        const data = await dynamoDB.scan(params).promise();
+        await dynamoDB.delete(params).promise();
         return {
             statusCode: 200,
-            body: JSON.stringify(data.Items),
+            body: JSON.stringify({ message: "Note deleted successfully" }),
             headers: {
-                "Access-Control-Allow-Origin": "*", 
+                "Access-Control-Allow-Origin": "*",
                 "Access-Control-Allow-Headers": "*"
             },
         };

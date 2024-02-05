@@ -24,7 +24,15 @@
       "function": {
         "amplifyreactgraphql2ed5e4282": {
           "deploymentBucketName": "amplify-amplify8ece056939164-staging-165911-deployment",
-          "s3Key": "amplify-builds/amplifyreactgraphql2ed5e4282-6f654445363059712b68-build.zip"
+          "s3Key": "amplify-builds/amplifyreactgraphql2ed5e4282-73705373626757526957-build.zip"
+        },
+        "createByLambda": {
+          "deploymentBucketName": "amplify-amplify8ece056939164-staging-165911-deployment",
+          "s3Key": "amplify-builds/createByLambda-30346255635058653159-build.zip"
+        },
+        "deleteByLambda": {
+          "deploymentBucketName": "amplify-amplify8ece056939164-staging-165911-deployment",
+          "s3Key": "amplify-builds/deleteByLambda-655a6c75346d6b41594e-build.zip"
         }
       }
     }

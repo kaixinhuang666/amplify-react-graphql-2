@@ -63,6 +63,16 @@
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "createByLambda": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "deleteByLambda": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "parameters": {
@@ -79,6 +89,38 @@
         {
           "category": "function",
           "resourceName": "amplifyreactgraphql2ed5e4282"
+        }
+      ]
+    },
+    "AMPLIFY_function_createByLambda_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "createByLambda"
+        }
+      ]
+    },
+    "AMPLIFY_function_createByLambda_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "createByLambda"
+        }
+      ]
+    },
+    "AMPLIFY_function_deleteByLambda_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "deleteByLambda"
+        }
+      ]
+    },
+    "AMPLIFY_function_deleteByLambda_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "deleteByLambda"
         }
       ]
     }
