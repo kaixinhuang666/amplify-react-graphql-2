@@ -47,12 +47,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "createByLambda",
+            "amplifyreactgraphql211453909",
             {
               "Fn::Join": [
                 "",
                 [
-                  "createByLambda",
+                  "amplifyreactgraphql211453909",
                   "-",
                   {
                     "Ref": "env"
@@ -78,7 +78,7 @@
             "Arn"
           ]
         },
-        "Runtime": "nodejs16.x",
+        "Runtime": "nodejs18.x",
         "Layers": [],
         "Timeout": 25
       }
@@ -89,12 +89,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "amplifyreactgraphql2LambdaRole58198ad0",
+            "amplifyreactgraphql2LambdaRole5a998fbd",
             {
               "Fn::Join": [
                 "",
                 [
-                  "amplifyreactgraphql2LambdaRole58198ad0",
+                  "amplifyreactgraphql2LambdaRole5a998fbd",
                   "-",
                   {
                     "Ref": "env"

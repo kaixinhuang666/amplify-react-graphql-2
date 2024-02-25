@@ -52,6 +52,12 @@
     }
   },
   "function": {
+    "amplifyreactgraphql211453909": {
+      "build": true,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "amplifyreactgraphql2ed5e4282": {
       "build": true,
       "providerPlugin": "awscloudformation",
@@ -69,6 +75,22 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_amplifyreactgraphql211453909_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "amplifyreactgraphql211453909"
+        }
+      ]
+    },
+    "AMPLIFY_function_amplifyreactgraphql211453909_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "amplifyreactgraphql211453909"
+        }
+      ]
+    },
     "AMPLIFY_function_amplifyreactgraphql2ed5e4282_deploymentBucketName": {
       "usedBy": [
         {

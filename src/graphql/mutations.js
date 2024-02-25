@@ -2,8 +2,8 @@
 // this is an auto generated file. This will be overwritten
 
 export const createNoteByLambda = /* GraphQL */ `
-  mutation CreateNoteByLambda($name: String!, $description: String) {
-    createNoteByLambda(name: $name, description: $description) {
+  mutation CreateNoteByLambda($input: createNoteInput) {
+    createNoteByLambda(input: $input) {
       id
       name
       description
@@ -16,15 +16,9 @@ export const createNoteByLambda = /* GraphQL */ `
   }
 `;
 export const deleteNoteByLambda = /* GraphQL */ `
-  mutation DeleteNoteByLambda($id: ID!) {
-    deleteNoteByLambda(id: $id) {
-      id
-      name
-      description
-      image
-      owner
-      createdAt
-      updatedAt
+  mutation DeleteNoteByLambda($input: deleteNoteInput) {
+    deleteNoteByLambda(input: $input) {
+      message
       __typename
     }
   }

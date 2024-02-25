@@ -14,19 +14,27 @@ import {
   View,
   withAuthenticator,
 } from '@aws-amplify/ui-react';
-import { listNotes } from "./graphql/queries";
+import { getNoteByLambda, listNotes } from "./graphql/queries";
 import {
+  createNoteByLambda,
   createNote as createNoteMutation,
+  deleteNoteByLambda,
   deleteNote as deleteNoteMutation,
 } from "./graphql/mutations";
 import { getUrl } from 'aws-amplify/storage';
 import { uploadData } from 'aws-amplify/storage';
 import { remove } from 'aws-amplify/storage'
 import { getCurrentUser } from 'aws-amplify/auth';
+
+import { v4 as uuidv4 } from 'uuid';
+
+
+
+
 // const { API } = require('aws-amplify');
 
+// const API = generateClient({authMode: 'userPool'});
 const API = generateClient();
-
 const App = ({ signOut }) => {
   const [notes, setNotes] = useState([]);
   const [name, setName] = useState("")
@@ -35,10 +43,26 @@ const App = ({ signOut }) => {
   }, []);
 
   async function fetchNotes() {
-    const apiData = await API.graphql({ query: listNotes });
-    const notesFromAPI = apiData.data.listNotes.items;
+    // const apiData = await API.graphql({ query: listNotes });
+    // const notesFromAPI = apiData.data.listNotes.items;
+    const { username, userId, signInDetails } = await getCurrentUser();
+    console.log(userId);
+    // const apiData = await API.graphql({ query: getNoteByLambda, variables: {input: { userId }} });
+    // const apiData = await API.graphql({ query: getNoteByLambda});
+    // const userInfo = await Auth.currentAuthenticatedUser();
+    // const userToken = userInfo.signInUserSession.idToken.jwtToken;
+    const apiData = await API.graphql({ query: getNoteByLambda,variables: { input: { userId: userId } } });
+    
+    console.log(apiData);
+    
+    // const notesFromAPI = apiData.data.getNoteByLambda.items;
+    const notesFromAPI = apiData.data.getNoteByLambda;
+    console.log(notesFromAPI);
+
+    const notesFromAPI_sort = notesFromAPI.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
     await Promise.all(
-      notesFromAPI.map(async (note) => {
+      notesFromAPI_sort.map(async (note) => {
         if (note.image) {
           const url = await getUrl({ key : note.name });
           note.image = url;
@@ -46,8 +70,8 @@ const App = ({ signOut }) => {
         return note;
       })
     );
-    console.log(notesFromAPI)
-    setNotes(notesFromAPI);
+    console.log(notesFromAPI_sort)
+    setNotes(notesFromAPI_sort);
   }
 
   async function createNote(event) {
@@ -76,10 +100,26 @@ const App = ({ signOut }) => {
     if (image) data.image=image.name;
     // if (!!data.image) await uploadData({ key: data.name , file: image });
     if (image) await uploadData({ key: data.name , data: image });
+    const uniqueId = uuidv4();
+    // await API.graphql({
+    //   query: createNoteMutation,
+    //   variables: { input: data },
+    // });
+    // await API.graphql({
+    //   query: createNoteByLambda,
+    //   variables: { input: data , name: data.name},
+    // });
     await API.graphql({
-      query: createNoteMutation,
-      variables: { input: data },
+      query: createNoteByLambda,
+      variables: { 
+        input: {
+          id: uniqueId,
+          name: data.name,
+          description: data.description,
+          image: data.image,
+          owner: userId}},
     });
+
     fetchNotes();
     event.target.reset();
   }
@@ -89,10 +129,14 @@ const App = ({ signOut }) => {
     const newNotes = notes.filter((note) => note.id !== id);
     setNotes(newNotes);
     await remove({ key: name});
+    // await API.graphql({
+    //   query: deleteNoteMutation,
+    //   variables: { input: { id } },
+    // });
     await API.graphql({
-      query: deleteNoteMutation,
-      variables: { input: { id } },
-    });
+        query: deleteNoteByLambda,
+        variables: { input: { id } },
+      });
   }
 
   return (

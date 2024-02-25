@@ -2,8 +2,8 @@
 // this is an auto generated file. This will be overwritten
 
 export const getNoteByLambda = /* GraphQL */ `
-  query GetNoteByLambda($id: ID!) {
-    getNoteByLambda(id: $id) {
+  query GetNoteByLambda($input: getNoteInput) {
+    getNoteByLambda(input: $input) {
       id
       name
       description

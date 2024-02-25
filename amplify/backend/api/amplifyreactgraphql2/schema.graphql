@@ -6,10 +6,30 @@ type Note @model @auth(rules: [ { allow: owner } ] ){
   owner: String
 }
 
+input getNoteInput{
+  userId: String!
+}
+
+input createNoteInput{
+  id: ID!
+  name: String!
+  description: String
+  image: String
+  owner: String
+}
+
+input deleteNoteInput{
+  id: ID!
+}
+
+type DeleteNoteResult {
+  message: String
+}
+
 type Query {
-	getNoteByLambda(id: ID!): [Note] @function(name: "amplifyreactgraphql2ed5e4282")
+	getNoteByLambda(input: getNoteInput): [Note] @function(name: "amplifyreactgraphql2ed5e4282-staging")
 }
 type Mutation {
-  createNoteByLambda(name: String!, description: String): Note @function(name: "createByLambda")
-  deleteNoteByLambda(id: ID!): Note @function(name: "deleteByLambda")
+  createNoteByLambda(input: createNoteInput): Note @function(name: "createByLambda-staging")
+  deleteNoteByLambda(input: deleteNoteInput): DeleteNoteResult @function(name: "deleteByLambda-staging")
 }
